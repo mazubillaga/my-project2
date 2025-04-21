@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Weather Plus App</title>
+    <div class=weather-app>
+  </head>
+  <body>
+    <header>
+      <form id="search-form">
+        <input
+          type="search"
+          placeholder="Enter a city.."
+          required
+          class="search-input"
+          id="search-input"
+        />
+        <input type="submit" value="Search" class="search-button" />
+      </form>
+    </header>
+</div>
+    <main>
+        <h1 id="current-city">San Francisco</h1>
+        <div class="current-weather"></div>
+        <p class="current-details">
+          <span id="current-date"></span>, overcast
+          <br />
+          Humidity: <strong>64%</strong>, Wind:
+          <strong>2.68km/h</strong>
+        </p>
+      </div class="current-details">
+      <div class="current-temperature">
+        <span class="temperature-icon">☁️</span>
+        <span class="current-degrees">15°C</span>
+      </div>
+      <div class="future>">
+        <ul>
+          <li>
+            Fri ☁️
+            <p><strong>15°</strong> 6°</p>
+          </li>
+          <li>
+            Sat ☁️
+            <p><strong>14°</strong> 8°</p>
+          </li>
+          <li>
+            Sun ☁️
+            <p><strong>16°</strong> 10°</p>
+          </li>
+          <li>
+            Mon ☀️
+            <p><strong>21°</strong> 12°</p>
+          </li>
+          <li>
+            Tue ☀️
+            <p><strong>21°</strong> 14°</p>
+          </li>
+        </ul>
+      </div>
+    </main>
+    <footer>
+      <p>
+        This project was coded by
+        <a href="#" target="blank"> Miren Zubillaga </a> and is open-sourced<a
+          href="#"
+          target="blank"
+        >
+          on GitHub
+        </a>
+        and hosted <a href="#" target="blank"> on Netlify </a>
+      </p>
+    </footer>
+    <script>
+      function search(event) {
+        event.preventDefault();
+        let searchInputElement = document.querySelector("#search-input");
+        let cityElement = document.querySelector("#current-city");
+        cityElement.innerHTML = searchInputElement.value;
+      }
+
+      function formatDate(date) {
+        let minutes = date.getMinutes();
+        let hours = date.getHours();
+        let day = date.getDay();
+        if (hours < 10) {
+          hours = `O${hours}`;
+        if (minutes < 10) {
+          minutes = `O${minutes}`;
+        }
+          let days = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ];
+          let formattedDay = days[day];
+          return `${formattedDay} ${hours}:${minutes}`;
+        }
+      }
+      let searchForm = document.querySelector("#search-form");
+      searchForm.addEventListener("submit", search);
+
+      let currentDateElement = document.querySelector("#current-date");
+      let currentDate = new Date();
+
+      currentDateElement.innerHTML = formatDate(currentDate);
+    </script>
+  </body>
+</html>
